@@ -19,6 +19,12 @@ class Log
         const bool Print_File = true;
         const char* File_name = "%d-%m-%y-Logger.log";
         //const std::string File_name = "%d-%m-%y-Logger.log";
+        const bool On_folder = true;
+        const char* Folder_name = "Log";
+
+
+        const bool On_Json = true;
+        const bool order_by_level = true;
 
     public:
 
