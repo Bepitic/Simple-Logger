@@ -28,8 +28,6 @@ class Log
 
     public:
 
-        Log(const Log&) = delete;
-
         static Log& Get()
         {
             static Log _log;
@@ -53,8 +51,15 @@ class Log
             if constexpr(Power_on_logger)
             { return Get().Information(); }
         }
+
     private:
-        Log(){}
+        //Delete ways to instantiate the class and allow to construct private.
+        Log() = default;
+        Log(const Log&) = delete;
+        Log(Log &&) = delete;
+
+        Log &operator =(const Log &) = delete;
+        Log &operator =(Log &&) = delete;
 
         void Error(){std::cout<<"Error"<<std::endl;}
         void Warning(){std::cout<<"Warning"<<std::endl;}
