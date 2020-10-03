@@ -22,9 +22,8 @@ class Log
         const bool On_folder = true;
         const char* Folder_name = "Log";
 
-
         const bool On_Json = true;
-        const bool order_by_level = true;
+        const bool Order_by_level = true;
 
     public:
 
