@@ -5,12 +5,21 @@
  * @author  Francisco Amoros Cubells
  * @date    02 oct, 2020
  *****************************************************************************/
+#include <string>
 
 // Use Case:
 //Log::Err("linea",a,a<b,"a<b...") //Log::Inf() //Log::Warn()
 
 class Log
 {
+    private: /* Config */
+        const bool Power_on_logger = true;
+        const bool Debug_mode = true;
+        const bool Print_Console = true;
+        const bool Print_File = true;
+        const char* File_name = "%d-%m-%y-Logger.log";
+        //const std::string File_name = "%d-%m-%y-Logger.log";
+
     public:
 
         Log(const Log&) = delete;
