@@ -16,8 +16,8 @@ class Log
     private: /* Config */
         const static bool Power_on_logger = true;
         const bool Debug_mode = true;
-        const bool Print_Console = true;
-        const bool Print_File = true;
+        const static bool Print_Console = true;
+        const static bool Print_File = true;
         //const char* File_name = "%d-%m-%y-Logger.log";
         //const std::string File_name = "%d-%m-%y-Logger.log";
         const bool On_folder = true;
@@ -34,10 +34,11 @@ class Log
             return _log;
         }
 
-        static void Err()
+        template <typename... Args>
+        static void Err(Args... a)
         {
             if constexpr(Power_on_logger)
-            { return Get().Error(); }
+            { return Get().Error(a...); }
         }
 
         static void Warn()
@@ -61,7 +62,66 @@ class Log
         Log &operator =(const Log &) = delete;
         Log &operator =(Log &&) = delete;
 
-        void Error(){std::cout<<"Error"<<std::endl;}
-        void Warning(){std::cout<<"Warning"<<std::endl;}
-        void Information(){std::cout<<"Information"<<std::endl;}
+        template <typename... Args>
+        void Error(Args... a)
+        {
+            if constexpr(Print_Console)
+            {
+                p_console("Error::", a...);
+            }
+
+            if constexpr(Print_File)
+            {
+            }
+        }
+
+        template <typename... Args>
+        void Warning(Args... a)
+        {
+            if constexpr(Print_Console)
+            {
+                p_console("Warning::", a...);
+            }
+
+            if constexpr(Print_File)
+            {
+            }
+        }
+
+        template <typename... Args>
+        void Information(Args... a)
+        {
+            if constexpr(Print_Console)
+            {
+                p_console("Information::", a...);
+            }
+
+            if constexpr(Print_File)
+            {
+            }
+        }
+
+        template <typename T,typename... Args>
+        void p_file( T head, Args... a)
+        {
+            std::cout << head;
+            p_file(a...);
+        }
+
+        void p_file()
+        {
+            std::cout << std::endl;
+        }
+
+        template <typename T,typename... Args>
+        void p_console( T head, Args... a)
+        {
+            std::cout << head;
+            p_console(a...);
+        }
+
+        void p_console()
+        {
+            std::cout << std::endl;
+        }
 };

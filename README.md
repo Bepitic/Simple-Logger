@@ -11,7 +11,7 @@ Simple Logger in C++ to understand how to use singletons.
 
 - [x] Some sort of switch on off.
 
-- [ ] Crear diferentes tipos de log, Error, Warning and Info.
+- [x] Crear diferentes tipos de log, Error, Warning and Info.
 
 - [ ] Buscar:
     - [ ] Alguna forma de poner la cabecera de la función en la que se llama?
